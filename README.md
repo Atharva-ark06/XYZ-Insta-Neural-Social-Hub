@@ -81,7 +81,7 @@ Instead of building another basic social-media clone, this project combines fami
 ## 👤 Profile Studio
 
 <p align="center">
-  <img src="./assets/profile.png" width="95%" alt="XYZ Insta Profile Studio">
+  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png" width="95%" alt="XYZ Insta Profile Studio">
 </p>
 
 ---
