@@ -73,7 +73,7 @@ Instead of building another basic social-media clone, this project combines fami
 ## 🔐 Access Portal
 
 <p align="center">
-  <img src=""C:\Users\athar\OneDrive\Pictures\Screenshots\Screenshot 2026-08-28 201324.png"" width="95%" alt="XYZ Insta Login Screen">
+  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929195/Screenshot_2026-08-28_201324.png" width="95%" alt="XYZ Insta Login Screen">
 </p>
 
 ---
