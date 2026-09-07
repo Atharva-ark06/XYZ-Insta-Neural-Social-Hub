@@ -52,17 +52,6 @@
   <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png" width="85%" alt="XYZ Insta Profile Studio" />
 </div>
 
----
-
-'' ## XYZ-Insta-Neural-Social-Hub/
-├── 📁 assets/
-│   ├── 📁 css/          # Tailwind CSS & custom glassmorphism styles
-│   ├── 📁 js/           # WebGL canvas shader & app routing logic
-│   └── 📁 images/       # Static assets & avatar presets
-├── 📄 index.html        # Main application entry point
-├── 📄 README.md         # Project documentation
-└── 📄 package.json      # Dependencies and build scripts
-
 
 ## 🏗️ Architecture & Application Flow
 
@@ -91,3 +80,12 @@
                               │
                               ▼
                     ✨ USER EXPERIENCE
+
+XYZ-Insta-Neural-Social-Hub/
+├── 📁 assets/
+│   ├── 📁 css/          # Tailwind CSS & custom glassmorphism styles
+│   ├── 📁 js/           # WebGL canvas shader & app routing logic
+│   └── 📁 images/       # Static assets & avatar presets
+├── 📄 index.html        # Main application entry point
+├── 📄 README.md         # Project documentation
+└── 📄 package.json      # Dependencies and build scripts
