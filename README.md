@@ -94,7 +94,8 @@ XYZ-Insta-Neural-Social-Hub/
 
 Running Locally
 Clone the repository:
+''
 
-Bash
-git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
+  git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
 cd XYZ-Insta-Neural-Social-Hub
+ 
