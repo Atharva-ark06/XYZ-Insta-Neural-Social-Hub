@@ -54,30 +54,12 @@
 
 ---
 
-## 🏗️ Architecture & Application Flow
 
-```text
-                     🧠 XYZ INSTA SYSTEM
-                              │
-                              ▼
-                      🔐 AUTHENTICATION
-                       /             \
-                   Register         Login
-                       \             /
-                        ▼           ▼
-                         👤 PROFILE
-                              │
-                              ▼
-                       📝 CREATE POST
-                              │
-                              ▼
-                           🌐 FEED
-                        /     │     \
-                      ❤️      🕒     💾
-                    Likes   Time   Storage
-                              │
-                              ▼
-                        🧠 NEURAL UI
-                              │
-                              ▼
-                    ✨ USER EXPERIENCE
+XYZ-Insta-Neural-Social-Hub/
+├── 📁 assets/
+│   ├── 📁 css/          # Tailwind CSS & custom glassmorphism styles
+│   ├── 📁 js/           # WebGL canvas shader & app routing logic
+│   └── 📁 images/       # Static assets & avatar presets
+├── 📄 index.html        # Main application entry point
+├── 📄 README.md         # Project documentation
+└── 📄 package.json      # Dependencies and build scripts
