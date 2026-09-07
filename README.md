@@ -80,6 +80,7 @@
                               │
                               ▼
                     ✨ USER EXPERIENCE
+'''
 
 XYZ-Insta-Neural-Social-Hub/
 ├── 📁 assets/
@@ -89,3 +90,11 @@ XYZ-Insta-Neural-Social-Hub/
 ├── 📄 index.html        # Main application entry point
 ├── 📄 README.md         # Project documentation
 └── 📄 package.json      # Dependencies and build scripts
+
+
+Running Locally
+Clone the repository:
+
+Bash
+git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
+cd XYZ-Insta-Neural-Social-Hub
