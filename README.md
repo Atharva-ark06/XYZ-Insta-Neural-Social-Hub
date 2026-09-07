@@ -1,162 +1,83 @@
+<div align="center">
+
 # 🧠 XYZ Insta — Neural Social Hub
 
 <p align="center">
-  <img src="https://img.shields.io/badge/XYZ%20Insta-Neural%20Social%20Hub-7c3aed?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/Tailwind%20CSS-4-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/badge/WebGL-Neural%20UI-6366f1?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/XYZ%20Insta-Neural%20Social%20Hub-7c3aed?style=for-the-badge" alt="XYZ Insta Badge" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=for-the-badge&logo=javascript&logoColor=black" alt="JS Badge" />
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-v4.0-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind Badge" />
+  <img src="https://img.shields.io/badge/WebGL-Neural%20UI-6366f1?style=for-the-badge&logo=opengl&logoColor=white" alt="WebGL Badge" />
 </p>
 
-<p align="center">
-  <b>A futuristic Instagram-inspired social platform with a neural-network visual experience.</b>
-</p>
+**A futuristic Instagram-inspired social platform powered by interactive WebGL neural background visuals.**
 
-<p align="center">
-  🔐 Authentication • 👤 Profiles • 📝 Posts • ❤️ Likes • 🌓 Themes • 🧠 Neural UI
-</p>
+[Explore Features](#-features) • [Screenshots](#-screenshots) • [Tech Stack](#-tech-stack) • [Quick Start](#-quick-start)
 
 ---
 
-## 🌌 About The Project
+</div>
 
-**XYZ Insta — Neural Social Hub** is a futuristic, Instagram-inspired social media web application designed with a strong focus on **modern UI/UX, interactive visuals, and social functionality**.
+## 🌌 Overview
 
-Instead of building another basic social-media clone, this project combines familiar social features with a **dark cyber-inspired interface, glowing neural visuals, glassmorphism, and an interactive WebGL background**.
+**XYZ Insta — Neural Social Hub** bridges familiar social media interactions with a cyber-inspired aesthetic. Built around a interactive WebGL-rendered neural network background, the application features glowing cyber visuals, glassmorphism UI elements, and full offline client-side data persistence.
 
-> 🧠 **Social Media × Neural UI × WebGL**
+> 🧠 **Core Philosophy:** Social Media Dynamics × WebGL Generative Visuals × Glassmorphism UX
 
 ---
 
 ## ✨ Features
 
-### 🔐 Authentication
-- User Registration
-- User Login
-- Logout
-- Form validation
-- Persistent user data
+| Feature | Capabilities |
+| :--- | :--- |
+| **🔐 Authentication** | Registration, sign-in/sign-out, client-side validation, persistent session memory. |
+| **👤 Profile Studio** | Custom display names, personal bios, avatar management, and media uploads. |
+| **📝 Social Feed** | Interactive feed supporting text & rich image posts, likes, and relative timestamps. |
+| **🧠 Neural Canvas** | WebGL-powered reactive neural background with dynamic particle motion. |
+| **🎨 Cyber UI/UX** | Dark glassmorphism card designs, neon glow effects, and responsive layout scaling. |
+| **🌓 Theme Engine** | Instant light/dark contrast switching across all structural UI layers. |
+
+---
+
+## 📸 Screenshots
+
+### 🔐 Access Portal
+<div align="center">
+  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929195/Screenshot_2026-08-28_201324.png" width="85%" alt="XYZ Insta Login Screen" />
+</div>
+
+<br />
 
 ### 👤 Profile Studio
-- Custom display name
-- Personal bio
-- Profile picture upload
-- Avatar support
-- Profile editing
-- Logout controls
-
-### 📝 Social Feed
-- Create posts
-- Text-based posts
-- Image posts
-- Global feed
-- Like interactions
-- Post timestamps
-
-### 🧠 Neural Interface
-- Interactive neural-network background
-- WebGL-powered visual effects
-- Neon purple / blue aesthetic
-- Glassmorphism UI
-- Glowing cards and buttons
-- Futuristic interface design
-
-### 🌓 Theme System
-- Dark Mode
-- Light Mode
-- Dynamic theme switching
-- Responsive layout
+<div align="center">
+  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png" width="85%" alt="XYZ Insta Profile Studio" />
+</div>
 
 ---
 
-# 📸 Screenshots
-
-## 🔐 Access Portal
-####
-<p align="center">
-  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929195/Screenshot_2026-08-28_201324.png" width="78%" alt="XYZ Insta Login Screen">
-</p>
-
----
-
-## 👤 Profile Studio
-####
-<p align="center">
-  <img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png" width="78%" alt="XYZ Insta Profile Studio">
-</p>
-
----
-
-# 🧠 Application Flow
+## 🏗️ Architecture & Application Flow
 
 ```text
-                    🧠 XYZ INSTA
-                         │
-                         ▼
-                  🔐 AUTHENTICATION
-                    /           \
-                   /             \
-              Register           Login
-                  \               /
-                   \             /
-                    ▼           ▼
-                       👤 PROFILE
-                           │
-                           ▼
-                      📝 CREATE POST
-                           │
-                           ▼
-                       🌐 FEED
-                    /      │      \
-                   /       │       \
-                 ❤️       🕒       💾
-               Likes    Time     Storage
-                           │
-                           ▼
-                    🧠 NEURAL UI
-                           │
-                           ▼
-                     ✨ USER EXPERIENCE 
-
-XYZ-Insta-Neural-Social-Hub
-│
-├── 🔐 Authentication
-│   ├── Login
-│   ├── Registration
-│   ├── Validation
-│   └── Logout
-│
-├── 👤 Profile Studio
-│   ├── Display Name
-│   ├── Bio
-│   ├── Profile Picture
-│   └── Avatar
-│
-├── 📝 Social Feed
-│   ├── Create Post
-│   ├── Image Upload
-│   ├── Global Feed
-│   ├── Likes
-│   └── Timestamps
-│
-├── 💾 Data Persistence
-│   └── Local Storage
-│
-├── 🎨 UI / UX
-│   ├── Dark Mode
-│   ├── Light Mode
-│   ├── Responsive Design
-│   └── Glassmorphism
-│
-└── 🧠 Neural Layer
-    └── Interactive WebGL Background 
-
-| Technology        | Purpose                    |
-| ----------------- | -------------------------- |
-| 🌐 HTML5          | Application structure      |
-| 🎨 CSS3           | Styling and visual effects |
-| ⚡ JavaScript      | Application logic          |
-| 💨 Tailwind CSS 4 | Modern UI styling          |
-| 🧠 WebGL          | Neural visual background   |
-| 💾 LocalStorage   | Client-side persistence    |
-| 🔧 Git            | Version control            |
-| 🐙 GitHub         | Repository hosting         |
+                     🧠 XYZ INSTA SYSTEM
+                              │
+                              ▼
+                      🔐 AUTHENTICATION
+                       /             \
+                   Register         Login
+                       \             /
+                        ▼           ▼
+                         👤 PROFILE
+                              │
+                              ▼
+                       📝 CREATE POST
+                              │
+                              ▼
+                           🌐 FEED
+                        /     │     \
+                      ❤️      🕒     💾
+                    Likes   Time   Storage
+                              │
+                              ▼
+                        🧠 NEURAL UI
+                              │
+                              ▼
+                    ✨ USER EXPERIENCE
