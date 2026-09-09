@@ -59,7 +59,7 @@
 
 ### 🔄 Data & Execution Flow
 
-```text
+
  🧠 XYZ INSTA SYSTEM
           │
           ▼
@@ -101,7 +101,9 @@ Node.js (v18.0.0 or higher recommended)
 npm or yarn
 
 Installation
-Clone the repository:
+Clone the repository: 
+
+---text 
 
 '''Bash
 git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
