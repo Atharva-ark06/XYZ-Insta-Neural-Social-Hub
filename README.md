@@ -103,19 +103,19 @@ npm or yarn
 Installation
 Clone the repository:
 
-Bash
+'''Bash
 git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
 cd XYZ-Insta-Neural-Social-Hub
 Install dependencies:
 
-Bash
+'''Bash
 npm install
 Start the local development server:
 
-Bash
+'''bash
 npm run dev
 Build for production:
 
-Bash
+'''Bash
 npm run build
 
