@@ -61,24 +61,26 @@ Node.js (v18.0.0 or higher recommended)
 
 npm or yarn
 
-``Installation
+Installation
 Clone the repository:
-
-Bash
+``Bash
 git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
 cd XYZ-Insta-Neural-Social-Hub
-Install dependencies:
 
-Bash
+Install dependencies:
+``Bash
 npm install
 Start the local development server:
 
 Bash
 npm run dev
-Build for production:
 
-```bash
+
+Build for production:
+``Bash
 npm run build 
+
+##text
 ## 🏗️ Architecture & Project Structure
 
 ### 🔄 Data & Execution Flow
