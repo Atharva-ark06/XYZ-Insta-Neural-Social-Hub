@@ -61,7 +61,7 @@ Node.js (v18.0.0 or higher recommended)
 
 npm or yarn
 
-```Installation
+``Installation
 Clone the repository:
 
 Bash
