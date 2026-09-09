@@ -55,6 +55,30 @@
 
 ---
 
+---⚡ Quick Start
+Prerequisites
+Node.js (v18.0.0 or higher recommended) 
+
+npm or yarn
+
+```Installation
+Clone the repository:
+
+Bash
+git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
+cd XYZ-Insta-Neural-Social-Hub
+Install dependencies:
+
+Bash
+npm install
+Start the local development server:
+
+Bash
+npm run dev
+Build for production:
+
+```bash
+npm run build 
 ## 🏗️ Architecture & Project Structure
 
 ### 🔄 Data & Execution Flow
@@ -93,30 +117,4 @@ Register         Login
 ├── 📄 index.html        # Main SPA entry point
 ├── 📄 README.md        # Documentation
 └── 📄 package.json     # Dependencies & scripts  
-
-
----⚡ Quick Start
-Prerequisites
-Node.js (v18.0.0 or higher recommended) 
-
-npm or yarn
-
----Installation
-Clone the repository:
-
----Bash
-git clone [https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git](https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git)
-cd XYZ-Insta-Neural-Social-Hub
-Install dependencies:
-
----Bash
-npm install
-Start the local development server:
-
----Bash
-npm run dev
-Build for production:
-
----Bash
-npm run build
 
