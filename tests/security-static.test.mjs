@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
@@ -44,4 +45,10 @@ test('legacy plaintext passwords are removed after successful migration', () => 
 
 test('the source warns that this is not production authentication', () => {
   assert.match(html, /not a production authentication boundary/);
+});
+
+test('the inline application script parses without syntax errors', () => {
+  const match = html.match(/<script>([\\s\\S]*?)<\\/script>/);
+  assert.ok(match, 'expected the application script to exist');
+  assert.doesNotThrow(() => new vm.Script(match[1]));
 });
