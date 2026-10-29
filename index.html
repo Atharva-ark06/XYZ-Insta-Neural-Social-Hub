@@ -440,7 +440,65 @@
   let posts = [];                 // each: { id, authorName, authorUsername, text, imageUrl, likes, likedByUsernames, timestamp }
   let loggedIn = false;
 
-  function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m; }).replace(/\n/g,'<br>'); }
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]).replace(/\n/g, '<br>');
+  }
+
+  // This is a browser-only demo, not a production authentication boundary.
+  const USER_STORAGE_KEY = 'gm_users';
+  const PBKDF2_ITERATIONS = 210000;
+  const MAX_NAME_LENGTH = 80;
+  const MAX_BIO_LENGTH = 240;
+  const MAX_POST_LENGTH = 2000;
+  const MAX_AVATAR_BYTES = 2 * 1024 * 1024;
+
+  function readUsers() {
+    try {
+      const value = JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || '[]');
+      return Array.isArray(value) ? value.filter((user) => user && typeof user === 'object') : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function validUsername(value) {
+    return /^[a-zA-Z0-9_]{3,24}$/.test(value);
+  }
+
+  function safeImageUrl(value) {
+    if (!value) return '';
+    try {
+      const url = new URL(value, window.location.href);
+      return url.protocol === 'https:' ? url.href : '';
+    } catch {
+      return '';
+    }
+  }
+
+  function bytesToHex(bytes) {
+    return Array.from(new Uint8Array(bytes), (byte) => byte.toString(16).padStart(2, '0')).join('');
+  }
+
+  function hexToBytes(hex) {
+    if (typeof hex !== 'string' || !/^(?:[0-9a-f]{2})+$/i.test(hex)) throw new Error('Invalid password hash');
+    return new Uint8Array(hex.match(/.{2}/g).map((part) => parseInt(part, 16)));
+  }
+
+  async function hashPassword(password, saltHex) {
+    if (!window.crypto?.subtle || !window.isSecureContext) {
+      throw new Error('Password hashing requires HTTPS or localhost in a modern browser.');
+    }
+    const salt = saltHex ? hexToBytes(saltHex) : window.crypto.getRandomValues(new Uint8Array(16));
+    const key = await window.crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+    const bits = await window.crypto.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: PBKDF2_ITERATIONS, hash: 'SHA-256' }, key, 256);
+    return { salt: bytesToHex(salt), hash: bytesToHex(bits) };
+  }
+
+  function saveUsers(users) {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(users));
+  }
 
   function showMessage(elId, msg, type) {
     let el = document.getElementById(elId);
@@ -481,7 +539,8 @@
       const likeClass = isLiked ? 'liked' : '';
       const likeCount = p.likes || 0;
       const avatarLetter = p.authorName ? p.authorName.charAt(0).toUpperCase() : p.authorUsername.charAt(0).toUpperCase();
-      const imageHtml = p.imageUrl ? `<img src="${escapeHtml(p.imageUrl)}" class="post-image" alt="post visual" onerror="this.style.display='none'">` : '';
+      const safeUrl = safeImageUrl(p.imageUrl);
+      const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="Post image" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : '';
       const timeStr = new Date(p.timestamp).toLocaleString();
       html += `
         <div class="post-card" data-postid="${p.id}">
@@ -520,13 +579,16 @@
     if(!currentUser) return;
     const text = document.getElementById('post-text').value.trim();
     const imageUrl = document.getElementById('post-image-url').value.trim();
-    if(!text) { showMessage('post-msg', '❌ Post cannot be empty! Write something.', 'error'); return; }
+    if(!text) { showMessage('post-msg', 'Post cannot be empty.', 'error'); return; }
+    if(text.length > MAX_POST_LENGTH) { showMessage('post-msg', `Post must be ${MAX_POST_LENGTH} characters or fewer.`, 'error'); return; }
+    const safeUrl = safeImageUrl(imageUrl);
+    if(imageUrl && !safeUrl) { showMessage('post-msg', 'Use a valid HTTPS image URL.', 'error'); return; }
     const newPost = {
       id: Date.now().toString() + Math.random(),
       authorName: currentUser.fullName || currentUser.username,
       authorUsername: currentUser.username,
       text: text,
-      imageUrl: imageUrl || '',
+      imageUrl: safeUrl,
       likes: 0,
       likedByUsernames: [],
       timestamp: new Date().toISOString()
@@ -542,7 +604,9 @@
     if(!currentUser) return;
     const newName = document.getElementById('profile-name').value.trim();
     const newBio = document.getElementById('profile-bio').value.trim();
-    if(newName) currentUser.fullName = newName;
+    if(!newName || newName.length > MAX_NAME_LENGTH) { showMessage('profile-msg', `Display name must be 1–${MAX_NAME_LENGTH} characters.`, 'error'); return; }
+    if(newBio.length > MAX_BIO_LENGTH) { showMessage('profile-msg', `Bio must be ${MAX_BIO_LENGTH} characters or fewer.`, 'error'); return; }
+    currentUser.fullName = newName;
     currentUser.bio = newBio;
     updateProfileUI();
     renderFeed();
@@ -552,30 +616,45 @@
   document.getElementById('profilePicInput')?.addEventListener('change', function(e) {
     if(!currentUser) return;
     const file = e.target.files[0];
-    if(file && (file.type.startsWith('image/'))) {
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        currentUser.avatarDataURL = ev.target.result;
-        updateProfileUI();
-        renderFeed();
-        showMessage('profile-msg', '🖼️ Profile picture updated!', 'success');
-      };
-      reader.readAsDataURL(file);
-    } else { showMessage('profile-msg', 'Only image files allowed', 'error'); }
+    if(!file) return;
+    if(!['image/jpeg', 'image/png'].includes(file.type) || file.size > MAX_AVATAR_BYTES) {
+      e.target.value = '';
+      showMessage('profile-msg', 'Choose a JPEG or PNG image no larger than 2 MB.', 'error');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onerror = () => showMessage('profile-msg', 'Could not read this image file.', 'error');
+    reader.onload = function(ev) {
+      if(typeof ev.target.result !== 'string' || !ev.target.result.startsWith('data:image/')) {
+        showMessage('profile-msg', 'The selected file could not be validated.', 'error');
+        return;
+      }
+      currentUser.avatarDataURL = ev.target.result;
+      updateProfileUI();
+      renderFeed();
+      showMessage('profile-msg', 'Profile picture updated.', 'success');
+    };
+    reader.readAsDataURL(file);
   });
 
-  function registerUser() {
+  async function registerUser() {
     const fullName = document.getElementById('reg-name').value.trim();
     const email = document.getElementById('reg-email').value.trim();
     const username = document.getElementById('reg-username').value.trim();
     const password = document.getElementById('reg-password').value;
     if(!fullName || !email || !username || !password) {
-      showMessage('reg-msg', '⚠️ All fields are required', 'error');
-      return;
+      showMessage('reg-msg', 'All fields are required.', 'error'); return;
     }
-    if(!email.includes('@')) { showMessage('reg-msg', 'Invalid email format', 'error'); return; }
-    const existing = localStorage.getItem('gm_users');
-    let users = existing ? JSON.parse(existing) : [];
+    if(fullName.length > MAX_NAME_LENGTH || !validUsername(username)) {
+      showMessage('reg-msg', 'Use a display name up to 80 characters and a username of 3–24 letters, numbers, or underscores.', 'error'); return;
+    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
+      showMessage('reg-msg', 'Enter a valid email address.', 'error'); return;
+    }
+    if(password.length < 12 || password.length > 128) {
+      showMessage('reg-msg', 'Use a password between 12 and 128 characters.', 'error'); return;
+    }
+    let users = readUsers();
     if(users.find(u => u.email === email)) {
       showMessage('reg-msg', '❌ Duplicate email! Already registered.', 'error');
       return;
@@ -584,28 +663,49 @@
       showMessage('reg-msg', '❌ Username taken. Choose another.', 'error');
       return;
     }
-    const newUser = { fullName, email, username, password, bio: '', avatarDataURL: null };
-    users.push(newUser);
-    localStorage.setItem('gm_users', JSON.stringify(users));
-    showMessage('reg-msg', '✅ Registration successful! Please login.', 'success');
+    try {
+      const credentials = await hashPassword(password);
+      const newUser = { fullName, email, username, passwordSalt: credentials.salt, passwordHash: credentials.hash, bio: '', avatarDataURL: null };
+      users.push(newUser);
+      saveUsers(users);
+      document.getElementById('reg-password').value = '';
+      showMessage('reg-msg', 'Registration saved in this browser. This demo is not production authentication.', 'success');
+    } catch (error) {
+      showMessage('reg-msg', error.message || 'Could not create the account in this browser.', 'error');
+      return;
+    }
     setTimeout(() => { document.getElementById('show-login-tab').click(); }, 1000);
   }
 
-  function login() {
+  async function login() {
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value;
     if(!username || !password) { showMessage('login-msg', 'Enter credentials', 'error'); return; }
-    const storedUsers = JSON.parse(localStorage.getItem('gm_users') || '[]');
-    let user = storedUsers.find(u => u.username === username && u.password === password);
-    if(!user && username === 'atharva123' && password === 'password123') {
-      user = { username: 'atharva123', fullName: 'Atharva Kulkarni', email: 'atharva@insta.com', bio: 'Neural enthusiast | GMinsta', avatarDataURL: null, password: 'password123' };
-      if(!storedUsers.find(u=>u.username==='atharva123')) {
-        storedUsers.push(user);
-        localStorage.setItem('gm_users', JSON.stringify(storedUsers));
+    const storedUsers = readUsers();
+    let user = storedUsers.find((entry) => entry.username === username);
+    if(!user) { showMessage('login-msg', 'Invalid credentials.', 'error'); return; }
+    try {
+      let matches = false;
+      if(user.passwordSalt && user.passwordHash) {
+        const derived = await hashPassword(password, user.passwordSalt);
+        matches = derived.hash === user.passwordHash;
+      } else if(typeof user.password === 'string') {
+        // One-time migration for accounts created by the previous prototype.
+        matches = user.password === password;
+        if(matches) {
+          const derived = await hashPassword(password);
+          user.passwordSalt = derived.salt;
+          user.passwordHash = derived.hash;
+          delete user.password;
+          saveUsers(storedUsers);
+        }
       }
+      if(!matches) { showMessage('login-msg', 'Invalid credentials.', 'error'); return; }
+    } catch (error) {
+      showMessage('login-msg', error.message || 'Could not verify credentials.', 'error');
+      return;
     }
-    if(!user) { showMessage('login-msg', 'Invalid credentials', 'error'); return; }
-    currentUser = { ...user };
+    currentUser = { username: user.username, fullName: user.fullName, email: user.email, bio: user.bio || '', avatarDataURL: user.avatarDataURL || null };
     loggedIn = true;
     showMessage('login-msg', 'Welcome back!', 'success');
     setTimeout(() => {
@@ -649,6 +749,9 @@
     document.getElementById('show-login-tab').style.color = '';
   });
   window.login = login; window.registerUser = registerUser; window.updateFullProfile = updateFullProfile; window.createPost = createPost; window.logout = logout;
+
+  // Keep the profile upload's advertised restrictions consistent with validation.
+  document.getElementById('profilePicInput')?.setAttribute('accept', 'image/jpeg,image/png');
 </script>
 </body>
 </html>

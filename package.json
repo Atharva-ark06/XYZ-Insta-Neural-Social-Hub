@@ -4,5 +4,10 @@
     "@tailwindcss/vite": "^4.3.0",
     "postcss": "^8.5.15",
     "tailwindcss": "^4.3.0"
+  },
+  "name": "xyz-insta-neural-social-hub",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/security-static.test.mjs"
   }
 }

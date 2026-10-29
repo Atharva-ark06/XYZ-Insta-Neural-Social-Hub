@@ -1,391 +1,151 @@
-<div align="center">
+# XYZ Insta — Neural Social Hub
 
-# 🧠 XYZ Insta
+A futuristic, Instagram-inspired **frontend prototype** built with HTML, CSS, vanilla JavaScript, browser storage, and a WebGL neural background.
 
-### `NEURAL SOCIAL HUB`
+> **Security status:** This is a learning/demo project, not a production social network. Password hashing in the browser is a limited improvement for this prototype; it does not replace server-side authentication, authorization, rate limiting, or a database.
 
-<p>
-  <img src="https://img.shields.io/badge/STATUS-ACTIVE-22c55e?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=for-the-badge&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/Tailwind%20CSS-v4-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/badge/WebGL-Interactive-6366f1?style=for-the-badge&logo=opengl&logoColor=white" />
-  <img src="https://img.shields.io/badge/License-MIT-a855f7?style=for-the-badge" />
-</p>
+## Features
 
-<br>
+- Register, log in, and log out in the current browser
+- Edit display name, bio, and profile picture
+- Create text posts with optional HTTPS image URLs
+- Like posts in the current page session
+- Dark/light theme preference
+- Responsive glassmorphism UI and animated WebGL background
+- Client-side validation and safer text rendering
+- PBKDF2 password hashes with per-account random salts for newly registered demo accounts
 
-> **A futuristic social media experience combining real-time WebGL visuals,
-> glassmorphism interfaces, and client-side social networking.**
+## Screenshots
 
-<br>
+### Access portal
+![XYZ Insta access portal](https://res.cloudinary.com/wpop4xyo/image/upload/v1787929195/Screenshot_2026-08-28_201324.png)
 
-**[🚀 Live Demo](#)**   •  
-**[✨ Features](#-features)**   •  
-**[📸 Screenshots](#-screenshots)**   •  
-**[⚡ Quick Start](#-quick-start)**
+### Profile studio
+![XYZ Insta profile studio](https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png)
 
-</div>
+## Tech stack
 
----
+| Technology | Purpose |
+| --- | --- |
+| HTML5 | Single-page structure |
+| CSS | Responsive interface, theme variables, glass effects |
+| Vanilla JavaScript | Demo interactions and client-side state |
+| Web Crypto API | PBKDF2 password hashing for local demo accounts |
+| WebGL | Animated neural background |
+| localStorage | Local demo account records and theme preference |
+| Node.js test runner | Lightweight security regression checks |
 
-## 🌌 About The Project
+## Run locally
 
-**XYZ Insta — Neural Social Hub** is a futuristic Instagram-inspired social platform designed around the idea of combining **social interaction with immersive digital visuals**.
+No build step or dependency installation is required to view the static page.
 
-Instead of relying on a traditional static interface, XYZ Insta introduces an interactive **WebGL neural environment** that reacts to the user's presence and interactions.
+### 1. Clone the repository
 
-The result is a social experience that feels less like a conventional website and more like a **digital command center**.
-
-### 🧬 Design Philosophy
-
-```text
-        SOCIAL MEDIA
-             │
-             ▼
-     ┌───────────────┐
-     │   XYZ INSTA   │
-     └───────┬───────┘
-             │
-     ┌───────┼────────┐
-     ▼       ▼        ▼
-   SOCIAL   WEBGL   GLASS
-   SYSTEM   VISUALS  UI/UX
-     │       │        │
-     └───────┼────────┘
-             ▼
-       FUTURISTIC
-      USER EXPERIENCE
-```
-
----
-
-# ✨ Features
-
-<table>
-<tr>
-<td width="50%">
-
-### 🔐 Authentication
-
-Client-side registration, login, logout, session validation, and persistent authentication state.
-
-</td>
-<td width="50%">
-
-### 👤 Profile Studio
-
-Personal profiles with customizable usernames, bios, avatars, and personal media.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-### 📝 Social Feed
-
-Create and interact with image/text posts with dynamic likes and relative timestamps.
-
-</td>
-<td>
-
-### 🧠 Neural Canvas
-
-Interactive WebGL particle system creating a dynamic neural-network-inspired environment.
-
-</td>
-</tr>
-
-<tr>
-<td>
-
-### 🎨 Cyber UI
-
-Dark glassmorphism cards, glowing accents, futuristic typography, and responsive layouts.
-
-</td>
-<td>
-
-### 🌓 Theme Engine
-
-Switch between light and dark visual modes without losing application state.
-
-</td>
-</tr>
-</table>
-
----
-
-# 🧠 Neural Experience
-
-The centerpiece of XYZ Insta is its **interactive neural background**.
-
-```text
-              ✦
-        ╲     │     ╱
-          ╲   │   ╱
-            ●───●
-          ╱ │╲ ╱│ ╲
-        ●───●───●───●
-          ╲ │╱ ╲│ ╱
-            ●───●
-          ╱   │   ╲
-        ✦     │     ✦
-```
-
-The WebGL canvas generates a constantly evolving particle environment designed to give the interface a **living digital atmosphere**.
-
----
-
-# 📸 Screenshots
-
-## 🔐 Access Portal
-
-<div align="center">
-
-<img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929195/Screenshot_2026-08-28_201324.png"
-  width="90%"
-  alt="XYZ Insta Access Portal" />
-
-</div>
-
-<br>
-
-## 👤 Profile Studio
-
-<div align="center">
-
-<img src="https://res.cloudinary.com/wpop4xyo/image/upload/v1787929135/Screenshot_2026-08-28_201538.png"
-  width="90%"
-  alt="XYZ Insta Profile Studio" />
-
-</div>
-
----
-
-# 🏗️ Architecture
-
-### 🔄 Application Flow
-
-```text
-                       🧠 XYZ INSTA
-                            │
-                            ▼
-                   ┌─────────────────┐
-                   │ 🔐 AUTH SYSTEM  │
-                   └────────┬────────┘
-                            │
-                 ┌──────────┴──────────┐
-                 ▼                     ▼
-            📝 REGISTER             🔑 LOGIN
-                 │                     │
-                 └──────────┬──────────┘
-                            ▼
-                    👤 USER PROFILE
-                            │
-                            ▼
-                     📝 CREATE POST
-                            │
-                            ▼
-                       🌐 SOCIAL FEED
-                            │
-             ┌──────────────┼──────────────┐
-             ▼              ▼              ▼
-           ❤️ LIKES       🕒 TIME       💾 STORAGE
-             │              │              │
-             └──────────────┼──────────────┘
-                            ▼
-                    🧠 NEURAL CANVAS
-                            │
-                            ▼
-                    ✨ USER EXPERIENCE
-```
-
----
-
-# 📁 Project Structure
-
-```text
-XYZ-Insta-Neural-Social-Hub/
-│
-├── 📁 assets/
-│   │
-│   ├── 📁 css/
-│   │   └── 🎨 Tailwind + custom UI styles
-│   │
-│   ├── 📁 js/
-│   │   └── 🧠 Application + WebGL logic
-│   │
-│   └── 📁 images/
-│       └── 🖼️ Static assets + avatars
-│
-├── 📄 index.html
-│   └── Main application entry point
-│
-├── 📄 package.json
-│   └── Dependencies + scripts
-│
-└── 📄 README.md
-    └── Project documentation
-```
-
----
-
-# 🛠️ Tech Stack
-
-<div align="center">
-
-|       Technology       | Purpose                   |
-| :--------------------: | :------------------------ |
-| 🟨 **JavaScript ES6+** | Application logic         |
-| 🎨 **Tailwind CSS v4** | Styling & responsive UI   |
-|      🧠 **WebGL**      | Neural particle rendering |
-|      🌐 **HTML5**      | Application structure     |
-|  💾 **Client Storage** | Local persistence         |
-|   ✨ **Glassmorphism**  | Visual design system      |
-
-</div>
-
----
-
-# ⚡ Quick Start
-
-### 1️⃣ Prerequisites
-
-Make sure you have:
-
-* **Node.js** `v18+`
-* **npm** or **yarn**
-* A modern browser with **WebGL support**
-
----
-
-### 2️⃣ Clone Repository
-
-```bash
-git clone https://github.com/your-username/XYZ-Insta-Neural-Social-Hub.git
-
+~~~bash
+git clone https://github.com/Atharva-ark06/XYZ-Insta-Neural-Social-Hub.git
 cd XYZ-Insta-Neural-Social-Hub
-```
+~~~
 
----
+### 2. Start a local web server
 
-### 3️⃣ Install Dependencies
+**Windows PowerShell:**
 
-```bash
-npm install
-```
+~~~powershell
+py -m http.server 8000
+~~~
 
----
+**macOS / Linux:**
 
-### 4️⃣ Start Development Server
+~~~bash
+python3 -m http.server 8000
+~~~
 
-```bash
-npm run dev
-```
+Open http://localhost:8000. Serving on localhost provides a suitable secure context for the Web Crypto API in modern browsers. You can also open index.html directly, but password hashing may be unavailable in some browser contexts.
 
-Open the local development URL shown in your terminal.
+### 3. Run the security regression checks
 
----
+Install Node.js 18 or newer, then run:
 
-### 5️⃣ Build For Production
+~~~bash
+node --test tests/security-static.test.mjs
+~~~
 
-```bash
-npm run build
-```
+Or, using npm:
 
----
+~~~bash
+npm test
+~~~
 
-# 🔒 Data & Privacy
+The tests inspect important security guardrails in the source. They are not a substitute for browser testing, penetration testing, or a server-side security review.
 
-XYZ Insta is designed around **client-side data persistence**.
+## How the app works
 
-User sessions and application data are stored locally within the browser environment.
+1. **Access portal:** users register or sign in in the current browser.
+2. **Local account store:** demo account records are kept in localStorage. New passwords are PBKDF2-derived with a random salt; legacy plaintext records are upgraded when their owner successfully signs in.
+3. **Profile studio:** display name, bio, and an optional JPEG/PNG avatar are held in client-side state.
+4. **Post composer and feed:** posts and likes are held in JavaScript memory for the current page session; they are not shared with other browsers or persisted to a server.
+5. **Neural canvas:** WebGL draws a decorative background independently of social features.
 
-> ⚠️ This project is intended as a learning/prototype application and should not be considered production-grade authentication or backend infrastructure.
+## Security improvements in this branch
 
----
+- Removed the hard-coded demo username/password.
+- Replaced plaintext storage for newly registered accounts with salted PBKDF2 hashes.
+- Added a legacy-account upgrade path at successful login.
+- Escaped HTML special characters, including quotes, before interpolating user-controlled values into generated markup.
+- Accepts only HTTPS image URLs for posts and avoids sending referrers for displayed images.
+- Added username, email, password, display-name, bio, and post-length validation.
+- Restricted avatar uploads to JPEG/PNG and 2 MB.
+- Added a security lifecycle, threat model, review notes, deployment guidance, and automated regression checks.
 
-# 🚀 Future Roadmap
+See [Security Review](docs/SECURITY_REVIEW.md), [Threat Model](docs/THREAT_MODEL.md), and [Security Lifecycle](docs/SECURITY_LIFECYCLE.md).
 
-```text
-[x] Authentication
-[x] User Profiles
-[x] Social Feed
-[x] Post Interactions
-[x] WebGL Neural Background
-[x] Responsive UI
-[x] Theme Switching
+## Important limitations
 
-[ ] Real Backend
-[ ] Database Integration
-[ ] Cloud Authentication
-[ ] Real-time Messaging
-[ ] Notifications
-[ ] Media Storage
-[ ] Advanced Privacy Controls
-```
+This remains a **frontend-only prototype**:
 
----
+- Browser storage can be read or changed by the person using the browser and by any successful same-origin script injection.
+- Client-side password hashing is not a secure authentication service; there is no server to verify identities or enforce authorization.
+- There is no shared backend, database, session management, password reset, email verification, CSRF protection layer, rate limiting, moderation service, or server-side upload validation.
+- Posts and likes reset when the page session ends; accounts are local to one browser.
+- Client-provided image MIME types are not trustworthy proof of file contents.
+- HTTPS-only image URLs reduce unsafe schemes but do not make third-party images trustworthy or prevent tracking by the image host.
 
-# 🎯 Project Goals
+**Do not use real passwords, personal data, private images, or sensitive information in this demo.** For production, implement a backend with secure password hashing (for example, Argon2id or a suitable bcrypt configuration), server-side sessions, authorization checks, validation, upload processing, logging, rate limiting, and a documented privacy policy. See [Deployment Guidance](docs/DEPLOYMENT.md).
 
-XYZ Insta was created to explore the intersection of:
+## Security lifecycle
 
-**Frontend Development**
-×
-**Creative Web Design**
-×
-**WebGL Graphics**
-×
-**Social Platforms**
+Discover → Design → Build → Verify → Release → Monitor → Respond → Improve
 
-The project focuses on creating an interface where **functionality and visual experience are equally important**.
+The lifecycle and its review gates are documented in [docs/SECURITY_LIFECYCLE.md](docs/SECURITY_LIFECYCLE.md).
 
----
+## Project structure
 
-# 🤝 Contributing
+~~~text
+.
+├── index.html
+├── README.md
+├── SECURITY.md
+├── docs/
+│   ├── ARCHITECTURE.md
+│   ├── CONTRIBUTING.md
+│   ├── DEPLOYMENT.md
+│   ├── INCIDENT_RESPONSE.md
+│   ├── PRIVACY.md
+│   ├── SECURITY_LIFECYCLE.md
+│   ├── SECURITY_REVIEW.md
+│   ├── TESTING.md
+│   └── THREAT_MODEL.md
+├── tests/
+│   └── security-static.test.mjs
+└── .github/workflows/
+    ├── security-checks.yml
+    └── static.yml
+~~~
 
-Contributions, suggestions, and improvements are welcome.
+## Contributing
 
-```bash
-# Fork the repository
-# Create your feature branch
-git checkout -b feature/AmazingFeature
+Please read [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) and [SECURITY.md](SECURITY.md). Keep changes focused, add regression tests for security fixes, and never commit credentials or personal data.
 
-# Commit your changes
-git commit -m "Add AmazingFeature"
+## License
 
-# Push your branch
-git push origin feature/AmazingFeature
-```
-
-Then open a **Pull Request**.
-
----
-
-# 📜 License
-
-This project is licensed under the **MIT License**.
-
-See the `LICENSE` file for more information.
-
----
-
-<div align="center">
-
-### 🧠 XYZ INSTA
-
-**NEURAL SOCIAL HUB**
-
-*Where social interaction meets the digital frontier.*
-
-<br>
-
-<img src="https://img.shields.io/badge/BUILT%20WITH-COFFEE%20%26%20CODE-7c3aed?style=for-the-badge" />
-
-<br><br>
-
-⭐ **If you like the project, consider giving it a star!**
-
-</div>
+The repository currently does not include a verified license file. Add a license only after confirming the intended license terms.
