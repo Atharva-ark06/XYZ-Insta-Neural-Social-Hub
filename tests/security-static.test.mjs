@@ -48,7 +48,8 @@ test('the source warns that this is not production authentication', () => {
 });
 
 test('the inline application script parses without syntax errors', () => {
-  const match = html.match(/<script>([\\s\\S]*?)<\\/script>/);
-  assert.ok(match, 'expected the application script to exist');
-  assert.doesNotThrow(() => new vm.Script(match[1]));
+  const scriptStart = html.indexOf('<script>') + '<script>'.length;
+  const scriptEnd = html.indexOf('</script>', scriptStart);
+  assert.ok(scriptStart >= '<script>'.length && scriptEnd > scriptStart, 'expected the application script to exist');
+  assert.doesNotThrow(() => new vm.Script(html.slice(scriptStart, scriptEnd)));
 });
