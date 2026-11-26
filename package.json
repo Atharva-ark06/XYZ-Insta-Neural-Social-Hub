@@ -8,6 +8,6 @@
   "name": "xyz-insta-neural-social-hub",
   "private": true,
   "scripts": {
-    "test": "node --test tests/security-static.test.mjs"
+    "test": "node --test"
   }
 }
