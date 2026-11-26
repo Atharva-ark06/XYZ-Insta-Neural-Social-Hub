@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0162",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Safely render untrusted markup in scenario 162",
+  "input": "O'Reilly & Friends #162",
+  "expected": "O&#39;Reilly &amp; Friends #162"
+}
