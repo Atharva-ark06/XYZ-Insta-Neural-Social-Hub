@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0126",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject unsafe media URI type 5 in case 126",
+  "input": "/posts/126.png",
+  "expected": ""
+}
