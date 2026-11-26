@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0136",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted image URL scheme or URL credentials, variant 136",
+  "input": "mailto:demo136@example.test",
+  "expected": ""
+}
