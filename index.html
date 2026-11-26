@@ -550,6 +550,31 @@
     }
   }
 
+  function createSyntheticPosts() {
+    // Clearly fictional, in-memory demo content. No network, no persistence.
+    const examples = [
+      ['Neural Studio', 'Launch day in our fictional creative lab. Share what you are building! ✨'],
+      ['Pixel Gardener', 'A little color and thoughtful design can change an entire interface. 🎨'],
+      ['Code Voyager', 'Testing the boundaries: input validation, safe rendering, and user-first UX. 🔐'],
+      ['Nova Designer', 'Accessibility matters: meaningful labels, contrast, and reduced-motion choices. 🌟'],
+      ['Orbit Research', 'Our sample insights are synthetic. Never confuse demos with live analytics. 🧪'],
+      ['Canvas Explorer', 'Here is a fictional update from our community sandbox. 🌌'],
+      ['Signal Builder', 'Small improvements add up: clearer cards and more reliable error states. 🛠️'],
+      ['Demo Moderator', 'This is a front-end prototype, not a connected social platform. 🛡️'],
+    ];
+    const now = Date.now();
+    return examples.map(([name, text], index) => ({
+      id: 'synthetic-' + (index + 1),
+      authorName: name,
+      authorUsername: 'demo_' + (index + 1),
+      text: '[SYNTHETIC POST] ' + text,
+      imageUrl: '',
+      likes: [12, 7, 21, 9, 4, 16, 6, 3][index],
+      likedByUsernames: [],
+      timestamp: new Date(now - (index + 1) * 45 * 60_000).toISOString(),
+    }));
+  }
+
   function renderFeed() {
     const feedContainer = document.getElementById('feed-list');
     if(!feedContainer) return;
@@ -738,7 +763,7 @@
       document.getElementById('feed-section').classList.add('visible');
       updateProfileUI();
       if(posts.length === 0) {
-        posts.push({ id: 'demo1', authorName: currentUser.fullName || currentUser.username, authorUsername: currentUser.username, text: 'Hello GMinsta! 🚀 Neural vibes. The post box is now larger!', imageUrl: '', likes: 2, likedByUsernames: [], timestamp: new Date().toISOString() });
+        posts = createSyntheticPosts();
       }
       renderFeed();
     }, 400);
