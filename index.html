@@ -492,10 +492,11 @@
   }
 
   function safeImageUrl(value) {
-    if (!value) return '';
+    if (typeof value !== 'string' || !/^https:\/\//i.test(value.trim())) return '';
     try {
-      const url = new URL(value, window.location.href);
-      return url.protocol === 'https:' ? url.href : '';
+      const url = new URL(value.trim());
+      // Do not accept embedded URL credentials or relative/scheme-relative links.
+      return url.protocol === 'https:' && !url.username && !url.password ? url.href : '';
     } catch {
       return '';
     }
