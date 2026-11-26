@@ -1,13 +1,9 @@
 {
-  "dependencies": {
-    "@tailwindcss/postcss": "^4.3.0",
-    "@tailwindcss/vite": "^4.3.0",
-    "postcss": "^8.5.15",
-    "tailwindcss": "^4.3.0"
-  },
   "name": "xyz-insta-neural-social-hub",
   "private": true,
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "version": "1.0.0",
+  "description": "Static neural social UI prototype with browser-only demo workflows"
 }
