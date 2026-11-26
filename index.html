@@ -656,6 +656,17 @@
     const newBio = document.getElementById('profile-bio').value.trim();
     if(!newName || newName.length > MAX_NAME_LENGTH) { showMessage('profile-msg', `Display name must be 1–${MAX_NAME_LENGTH} characters.`, 'error'); return; }
     if(newBio.length > MAX_BIO_LENGTH) { showMessage('profile-msg', `Bio must be ${MAX_BIO_LENGTH} characters or fewer.`, 'error'); return; }
+    try {
+      const users = readUsers();
+      const stored = users.find((user) => user.username === currentUser.username);
+      if (!stored) { showMessage('profile-msg', 'Local account is missing. Please sign in again.', 'error'); return; }
+      stored.fullName = newName;
+      stored.bio = newBio;
+      saveUsers(users);
+    } catch {
+      showMessage('profile-msg', 'Could not save changes to browser storage.', 'error');
+      return;
+    }
     currentUser.fullName = newName;
     currentUser.bio = newBio;
     updateProfileUI();
