@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0077",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Reject invalid handle category 4 in 77",
+  "input": "user name 77",
+  "expected": false
+}
