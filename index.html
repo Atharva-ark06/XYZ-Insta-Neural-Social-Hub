@@ -663,13 +663,28 @@
     showMessage('profile-msg', '✨ Profile updated!', 'success');
   }
 
-  document.getElementById('profilePicInput')?.addEventListener('change', function(e) {
+  document.getElementById('profilePicInput')?.addEventListener('change', async function(e) {
     if(!currentUser) return;
     const file = e.target.files[0];
     if(!file) return;
     if(!['image/jpeg', 'image/png'].includes(file.type) || file.size > MAX_AVATAR_BYTES) {
       e.target.value = '';
       showMessage('profile-msg', 'Choose a JPEG or PNG image no larger than 2 MB.', 'error');
+      return;
+    }
+    // MIME labels are client claims; validate basic PNG/JPEG magic bytes too.
+    try {
+      const signature = new Uint8Array(await file.slice(0, 12).arrayBuffer());
+      const png = signature.length >= 8 && [137,80,78,71,13,10,26,10].every((byte, index) => signature[index] === byte);
+      const jpeg = signature.length >= 3 && signature[0] === 0xff && signature[1] === 0xd8 && signature[2] === 0xff;
+      if (!((file.type === 'image/png' && png) || (file.type === 'image/jpeg' && jpeg))) {
+        e.target.value = '';
+        showMessage('profile-msg', 'Invalid file content: choose a real JPEG or PNG image.', 'error');
+        return;
+      }
+    } catch {
+      e.target.value = '';
+      showMessage('profile-msg', 'Could not inspect the image.', 'error');
       return;
     }
     const reader = new FileReader();
