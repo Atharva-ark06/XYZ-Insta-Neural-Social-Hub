@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0165",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 165",
+  "input": "<img src=x onerror=alert(165)>",
+  "expected": "&lt;img src=x onerror=alert(165)&gt;"
+}
