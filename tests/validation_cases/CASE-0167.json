@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0167",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 167",
+  "input": "x > y & y < z #167",
+  "expected": "x &gt; y &amp; y &lt; z #167"
+}

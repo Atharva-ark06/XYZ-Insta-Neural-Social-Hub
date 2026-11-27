@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0174",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 174",
+  "input": "<div data-n=\"174\">text</div>",
+  "expected": "&lt;div data-n=&quot;174&quot;&gt;text&lt;/div&gt;"
+}

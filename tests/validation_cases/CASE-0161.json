@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0161",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Safely render untrusted markup in scenario 161",
+  "input": "<script>alert(\"161\")</script>",
+  "expected": "&lt;script&gt;alert(&quot;161&quot;)&lt;/script&gt;"
+}

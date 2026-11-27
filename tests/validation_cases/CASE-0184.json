@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0184",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 184",
+  "input": "A'B\"C & D\n184",
+  "expected": "A&#39;B&quot;C &amp; D<br>184"
+}

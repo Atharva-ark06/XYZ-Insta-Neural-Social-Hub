@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0096",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Allow absolute HTTPS media input 96",
+  "input": "https://media.example.test/posts/96.png?width=256&quality=90",
+  "expected": "https://media.example.test/posts/96.png?width=256&quality=90"
+}

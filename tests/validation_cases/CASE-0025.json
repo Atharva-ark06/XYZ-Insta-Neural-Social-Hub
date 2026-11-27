@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0025",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Valid handle with permitted alphabet and length 25",
+  "input": "analyst_25",
+  "expected": true
+}

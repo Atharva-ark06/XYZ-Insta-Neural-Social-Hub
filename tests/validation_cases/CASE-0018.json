@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0018",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Accept a syntactically valid local demo handle (10 characters)",
+  "input": "builder_18",
+  "expected": true
+}

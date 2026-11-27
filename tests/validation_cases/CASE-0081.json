@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0081",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Accept well-formed HTTPS resource 81",
+  "input": "https://media.example.test/posts/81.png?width=241&quality=90",
+  "expected": "https://media.example.test/posts/81.png?width=241&quality=90"
+}

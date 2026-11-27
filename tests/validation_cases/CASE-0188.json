@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0188",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 188",
+  "input": "two lines 188\nsecond line",
+  "expected": "two lines 188<br>second line"
+}

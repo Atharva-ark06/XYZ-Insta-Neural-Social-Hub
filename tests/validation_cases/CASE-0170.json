@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0170",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape script, quotes and markup metacharacters 170",
+  "input": "O'Reilly & Friends #170",
+  "expected": "O&#39;Reilly &amp; Friends #170"
+}

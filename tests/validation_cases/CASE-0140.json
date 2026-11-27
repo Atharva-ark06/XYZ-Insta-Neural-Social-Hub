@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0140",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted image URL scheme or URL credentials, variant 140",
+  "input": "ftp://media.example.test/posts/140.png",
+  "expected": ""
+}

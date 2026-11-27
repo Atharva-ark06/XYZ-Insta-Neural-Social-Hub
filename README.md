@@ -4,6 +4,50 @@ A futuristic, Instagram-inspired **frontend prototype** built with HTML, CSS, va
 
 > **Security status:** This is a learning/demo project, not a production social network. Password hashing in the browser is a limited improvement for this prototype; it does not replace server-side authentication, authorization, rate limiting, or a database.
 
+## November 26, 2026 security, UX and demo review (PR in progress)
+
+**The live site is a static social UI prototype, not a deployed API or an
+authenticated backend.** Its GitHub Pages workflow only publishes static files.
+No amount of frontend wiring can make a live database or protected social feed
+appear without deploying a separate server and implementing identity,
+authorization, storage, security headers and monitoring.
+
+### Changes in this review
+
+- **Account flow:** existing PBKDF2 demo passwords and legacy migration remain
+  browser-local. Profile display name and bio changes now persist to that local
+  account record with a user-visible storage failure state. No real-user login,
+  OAuth, session service, MFA or RBAC is claimed.
+- **Post and image boundaries:** image links must be absolute HTTPS URLs and
+  cannot embed URL credentials. JPEG/PNG previews check both declared MIME
+  type and a basic file signature. These are client-side safeguards, not a
+  production-grade upload scanner or media processor.
+- **Synthetic social activity:** after signing into a locally created demo
+  account, the feed contains eight **explicitly marked fictional posts**.
+  They are generated in memory, require no API, and are cleared on logout;
+  they do not represent live account activity.
+- **Visual design:** stronger dark/light color contrast, top-right theme
+  toggle state, hoverable cards, improved text hierarchy, keyboard focus
+  styles, responsive layout and reduced-motion treatment.
+- **Verification:** the functional regression matrix runs the **same**
+  username, image URL and HTML escaping helpers shipped in `index.html`.
+  GitHub Actions installs the locked dependency tree, runs `npm test` and
+  audits high-severity npm advisories.
+
+### Run and check
+
+```bash
+npm ci --ignore-scripts
+npm test
+npm audit --audit-level=high
+python3 -m http.server 8000
+```
+
+Open `http://localhost:8000`, create a **throwaway demo account** with a
+unique password, and sign in to inspect the fictional feed. Do not enter real
+credentials or upload confidential media. Verify latest pull-request checks
+before merging. A passing static audit is not a penetration-test certificate.
+
 ## Features
 
 - Register, log in, and log out in the current browser

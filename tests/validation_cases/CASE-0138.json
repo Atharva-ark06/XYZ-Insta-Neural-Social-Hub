@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0138",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted image URL scheme or URL credentials, variant 138",
+  "input": "data:image/png;base64,AA138",
+  "expected": ""
+}

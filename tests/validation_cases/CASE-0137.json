@@ -1,0 +1,8 @@
+{
+  "case_id": "CASE-0137",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted image URL scheme or URL credentials, variant 137",
+  "input": "javascript:alert(137)",
+  "expected": ""
+}
