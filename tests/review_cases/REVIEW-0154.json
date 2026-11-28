@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0154",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 154",
+  "input": "a & b && c 154",
+  "expected": "a &amp; b &amp;&amp; c 154"
+}
