@@ -760,11 +760,11 @@
       showMessage('reg-msg', 'This browser demo supports up to 100 local accounts.', 'error');
       return;
     }
-    if(users.find(u => u.email === email)) {
+    if(users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
       showMessage('reg-msg', '❌ Duplicate email! Already registered.', 'error');
       return;
     }
-    if(users.find(u => u.username === username)) {
+    if(users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
       showMessage('reg-msg', '❌ Username taken. Choose another.', 'error');
       return;
     }
@@ -787,7 +787,7 @@
     const password = document.getElementById('login-password').value;
     if(!username || !password) { showMessage('login-msg', 'Enter credentials', 'error'); return; }
     const storedUsers = readUsers();
-    let user = storedUsers.find((entry) => entry.username === username);
+    let user = storedUsers.find((entry) => entry.username.toLowerCase() === username.toLowerCase());
     if(!user) {
       // Avoid embedding an arbitrary user lookup result into the rendered page.
       showMessage('login-msg', 'Invalid credentials.', 'error');
