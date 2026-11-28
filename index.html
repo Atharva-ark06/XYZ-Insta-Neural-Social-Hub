@@ -614,7 +614,7 @@
       const likeCount = Number.isSafeInteger(p.likes) && p.likes >= 0 ? p.likes : 0;
       const avatarLetter = p.authorName ? p.authorName.charAt(0).toUpperCase() : p.authorUsername.charAt(0).toUpperCase();
       const safeUrl = safeImageUrl(p.imageUrl);
-      const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="Post image" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : '';
+      const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="External post image" loading="lazy" referrerpolicy="no-referrer">` : '';
       const parsedTime = new Date(p.timestamp);
       const timeStr = Number.isNaN(parsedTime.getTime()) ? 'Unknown time' : parsedTime.toLocaleString();
       html += `
