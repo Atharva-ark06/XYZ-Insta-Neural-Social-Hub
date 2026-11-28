@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0137",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted media resource variant 137",
+  "input": "ftp://cdn.example.test/137",
+  "expected": ""
+}
