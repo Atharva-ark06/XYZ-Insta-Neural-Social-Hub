@@ -546,6 +546,7 @@
   }
 
   function saveUsers(users) {
+    if (!Array.isArray(users) || users.length > 100) throw new Error('Local account capacity exceeded');
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(users));
   }
 
