@@ -501,7 +501,11 @@
   function readUsers() {
     try {
       const value = JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || '[]');
-      return Array.isArray(value) ? value.filter((user) => user && typeof user === 'object') : [];
+      return Array.isArray(value) ? value.filter((user) =>
+        user && typeof user === 'object' && !Array.isArray(user) &&
+        validUsername(user.username) && typeof user.email === 'string' &&
+        typeof user.fullName === 'string' && user.fullName.length <= MAX_NAME_LENGTH
+      ).slice(0, 100) : [];
     } catch {
       return [];
     }
