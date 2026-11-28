@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0106",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject unsupported link scheme, userinfo or relative resource 106",
+  "input": "javascript:alert(106)",
+  "expected": ""
+}
