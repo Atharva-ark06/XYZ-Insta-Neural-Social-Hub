@@ -1,0 +1,7 @@
+{
+  "case_id": "REVIEW-0193",
+  "synthetic": true,
+  "kind": "hex_invalid",
+  "description": "Reject malformed verifier encoding 193",
+  "input": "not-hex-193"
+}
