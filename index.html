@@ -756,6 +756,10 @@
       showMessage('reg-msg', 'Use a password between 12 and 128 characters.', 'error'); return;
     }
     let users = readUsers();
+    if(users.length >= 100) {
+      showMessage('reg-msg', 'This browser demo supports up to 100 local accounts.', 'error');
+      return;
+    }
     if(users.find(u => u.email === email)) {
       showMessage('reg-msg', '❌ Duplicate email! Already registered.', 'error');
       return;
