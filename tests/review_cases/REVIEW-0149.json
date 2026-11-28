@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0149",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 149",
+  "input": "\"onmouseover=\"alert(149)",
+  "expected": "&quot;onmouseover=&quot;alert(149)"
+}
