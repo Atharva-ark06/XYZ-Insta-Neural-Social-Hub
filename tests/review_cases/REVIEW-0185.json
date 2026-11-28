@@ -1,0 +1,12 @@
+{
+  "case_id": "REVIEW-0185",
+  "synthetic": true,
+  "kind": "hex_valid",
+  "description": "Decode valid verifier hex bytes 185",
+  "input": "ff00ab",
+  "expected": [
+    255,
+    0,
+    171
+  ]
+}
