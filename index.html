@@ -669,6 +669,7 @@
       timestamp: new Date().toISOString()
     };
     posts.unshift(newPost);
+    if (posts.length > 250) posts.length = 250; // Limit browser-only memory usage.
     document.getElementById('post-text').value = '';
     document.getElementById('post-image-url').value = '';
     renderFeed();
