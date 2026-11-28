@@ -609,6 +609,7 @@
     }
     let html = '';
     for(let p of posts) {
+      if (!p || typeof p !== 'object' || typeof p.text !== 'string' || typeof p.authorUsername !== 'string') continue;
       const isLiked = currentUser && p.likedByUsernames && p.likedByUsernames.includes(currentUser.username);
       const likeClass = isLiked ? 'liked' : '';
       const likeCount = Number.isSafeInteger(p.likes) && p.likes >= 0 ? p.likes : 0;
