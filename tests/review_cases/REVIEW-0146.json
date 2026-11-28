@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0146",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 146",
+  "input": "<img src=x onerror=alert(146)>",
+  "expected": "&lt;img src=x onerror=alert(146)&gt;"
+}
