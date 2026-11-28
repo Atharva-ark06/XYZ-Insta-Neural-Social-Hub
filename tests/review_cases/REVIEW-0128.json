@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0128",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted media resource variant 128",
+  "input": "data:image/png;base64,aa128",
+  "expected": ""
+}
