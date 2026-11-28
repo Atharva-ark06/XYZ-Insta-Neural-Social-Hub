@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0132",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject untrusted media resource variant 132",
+  "input": "/relative/132.png",
+  "expected": ""
+}
