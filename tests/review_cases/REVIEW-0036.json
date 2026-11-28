@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0036",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Malformed local handle rejection 36",
+  "input": "no spaces 36",
+  "expected": false
+}
