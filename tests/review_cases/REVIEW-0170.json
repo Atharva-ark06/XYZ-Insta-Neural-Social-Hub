@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0170",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape untrusted post markup safely 170",
+  "input": "\"onmouseover=\"alert(170)",
+  "expected": "&quot;onmouseover=&quot;alert(170)"
+}
