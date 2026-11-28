@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0110",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject insecure scheme, URL credentials or relative image reference 110",
+  "input": "https://demo110:secret@cdn.example.test/img.png",
+  "expected": ""
+}
