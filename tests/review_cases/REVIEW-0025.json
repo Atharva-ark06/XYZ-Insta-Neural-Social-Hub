@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0025",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Valid local username acceptance scenario 25",
+  "input": "xxxxxxxxxxxxxxxxxxxxxxxx",
+  "expected": true
+}
