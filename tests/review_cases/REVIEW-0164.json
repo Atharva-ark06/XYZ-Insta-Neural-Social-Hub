@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0164",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape untrusted post markup safely 164",
+  "input": "O'Keefe & <tag>164</tag>",
+  "expected": "O&#39;Keefe &amp; &lt;tag&gt;164&lt;/tag&gt;"
+}
