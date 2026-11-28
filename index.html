@@ -655,7 +655,7 @@
     const safeUrl = safeImageUrl(imageUrl);
     if(imageUrl && !safeUrl) { showMessage('post-msg', 'Use a valid HTTPS image URL.', 'error'); return; }
     const newPost = {
-      id: Date.now().toString() + Math.random(),
+      id: 'local-' + (window.crypto?.randomUUID?.() || (Date.now().toString(36) + '-' + Math.random().toString(36).slice(2))),
       authorName: currentUser.fullName || currentUser.username,
       authorUsername: currentUser.username,
       text: text,
