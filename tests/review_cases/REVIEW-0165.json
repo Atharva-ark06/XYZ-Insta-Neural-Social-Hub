@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0165",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape untrusted post markup safely 165",
+  "input": "line one 165\nline two",
+  "expected": "line one 165<br>line two"
+}

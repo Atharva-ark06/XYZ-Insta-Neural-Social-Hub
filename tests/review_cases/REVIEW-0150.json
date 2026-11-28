@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0150",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 150",
+  "input": "O'Keefe & <tag>150</tag>",
+  "expected": "O&#39;Keefe &amp; &lt;tag&gt;150&lt;/tag&gt;"
+}

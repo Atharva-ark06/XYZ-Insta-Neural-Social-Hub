@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0070",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Reject malformed local account name 70",
+  "input": "équipe_70",
+  "expected": false
+}

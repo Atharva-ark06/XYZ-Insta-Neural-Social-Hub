@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0045",
+  "synthetic": true,
+  "kind": "username",
+  "description": "Reject invalid username form 45",
+  "input": "u.45",
+  "expected": false
+}

@@ -4,7 +4,7 @@ A futuristic, Instagram-inspired **frontend prototype** built with HTML, CSS, va
 
 > **Security status:** This is a learning/demo project, not a production social network. Password hashing in the browser is a limited improvement for this prototype; it does not replace server-side authentication, authorization, rate limiting, or a database.
 
-## November 26, 2026 security, UX and demo review (PR in progress)
+## November 26, 2026 security, UX and demo review (merged)
 
 **The live site is a static social UI prototype, not a deployed API or an
 authenticated backend.** Its GitHub Pages workflow only publishes static files.
@@ -47,6 +47,42 @@ Open `http://localhost:8000`, create a **throwaway demo account** with a
 unique password, and sign in to inspect the fictional feed. Do not enter real
 credentials or upload confidential media. Verify latest pull-request checks
 before merging. A passing static audit is not a penetration-test certificate.
+
+## November 28, 2026 follow-up hardening
+
+This change set builds on the previously merged security and synthetic-feed PR.
+The project remains **static and browser-only**: GitHub Pages has no API,
+database, hosted authentication, remote feed or live dashboard to integrate.
+Do not confuse the eight labeled fictional posts with actual user activity.
+
+### Improvements
+- Link form labels to their inputs and announce validation through accessible
+  status regions; keep login/register selected-tab state synchronized.
+- Prevent a delayed login-success callback from reopening the local demo UI
+  after logout, clear text and password fields when signing out, and use random
+  post identifiers where available.
+- Bound the number of local browser accounts (100) and in-memory posts (250).
+  Validate stored account record structure, treat duplicate usernames/emails
+  case-insensitively, and reject malformed in-memory post objects before display.
+- Keep the existing top-right light/dark toggle and improve its focus/hover
+  states, typography, mobile wrapping, and reduced-motion behavior.
+- Run additional executable URL, HTML escaping, UTF-8/hex verifier, username,
+  and synthetic-feed boundary test fixtures alongside the existing tests.
+- Review the dependency lockfile and GitHub Actions workflow rather than
+  claiming a server-side authentication or real API which does not exist.
+
+### Verification
+
+```bash
+npm ci --ignore-scripts
+npm test
+npm audit --audit-level=high
+```
+
+These checks verify selected properties of a static demo only. **Do not use
+real passwords or personal data.** For production authentication, storage,
+rate limiting, and a live activity feed, add a separately deployed secured
+backend and database, then perform an independent security review.
 
 ## Features
 

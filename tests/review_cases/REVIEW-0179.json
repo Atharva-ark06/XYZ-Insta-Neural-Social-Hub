@@ -1,0 +1,12 @@
+{
+  "case_id": "REVIEW-0179",
+  "synthetic": true,
+  "kind": "hex_valid",
+  "description": "Convert valid PBKDF2 hash bytes 179",
+  "input": "ff00ab",
+  "expected": [
+    255,
+    0,
+    171
+  ]
+}

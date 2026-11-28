@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0167",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape untrusted post markup safely 167",
+  "input": "<img src=x onerror=alert(167)>",
+  "expected": "&lt;img src=x onerror=alert(167)&gt;"
+}

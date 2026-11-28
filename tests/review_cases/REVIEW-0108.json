@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0108",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject unsupported link scheme, userinfo or relative resource 108",
+  "input": "http://insecure.example.test/108",
+  "expected": ""
+}

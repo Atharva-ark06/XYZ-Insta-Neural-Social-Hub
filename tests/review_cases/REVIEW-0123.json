@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0123",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject insecure scheme, URL credentials or relative image reference 123",
+  "input": "ftp://cdn.example.test/123",
+  "expected": ""
+}

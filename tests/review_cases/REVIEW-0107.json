@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0107",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Reject unsupported link scheme, userinfo or relative resource 107",
+  "input": "data:image/png;base64,aa107",
+  "expected": ""
+}

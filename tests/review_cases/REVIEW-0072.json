@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0072",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Accept fully qualified HTTPS media source 72",
+  "input": "https://cdn.example.test/p/72.png?size=172",
+  "expected": "https://cdn.example.test/p/72.png?size=172"
+}

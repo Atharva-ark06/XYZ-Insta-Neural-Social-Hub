@@ -333,6 +333,26 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       #neuro-canvas { opacity: .12; }
     }
+
+    /* Keyboard visibility and responsive social-dashboard clarity. */
+    .card h2, .section-title { font-weight: 800; }
+    .card, .post-card { overflow-wrap: anywhere; }
+    .post-card { position: relative; }
+    .post-card:focus-within { border-color: #a78bfa; box-shadow: 0 0 0 2px rgba(167,139,250,.35); }
+    .post-body { font-weight: 600; line-height: 1.75; }
+    .post-header .post-author { letter-spacing: .01em; }
+    .theme-toggle { color: var(--text-main); transition: border-color .18s ease, transform .18s ease; }
+    .theme-toggle:hover { border-color: #a78bfa; transform: translateY(-1px); }
+    .theme-toggle[aria-pressed="true"] { outline: 2px solid #8b5cf6; outline-offset: 3px; }
+    .btn-secondary[aria-pressed="true"] { border-color: #a78bfa; font-weight: 800; }
+    .msg[role="status"] { font-weight: 700; line-height: 1.55; }
+    .post-time, .field-hint { line-height: 1.5; }
+    @media (max-width: 420px) {
+      header h1 { font-size: 1.15rem; overflow-wrap: anywhere; }
+      .card { padding: 18px; }
+      .post-actions { flex-wrap: wrap; gap: 8px; }
+      .theme-toggle { width: 44px; height: 44px; }
+    }
   </style>
 </head>
 <body>
@@ -350,26 +370,26 @@
 <div class="card" id="login-card">
   <div class="section-title">⚡ Access Portal</div>
   <div style="display: flex; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid var(--border);">
-    <button id="show-login-tab" class="btn-secondary" style="flex:1; background: var(--primary); color:white;">Login</button>
-    <button id="show-reg-tab" class="btn-secondary" style="flex:1;">Register</button>
+    <button id="show-login-tab" type="button" aria-pressed="true" class="btn-secondary" style="flex:1; background: var(--primary); color:white;">Login</button>
+    <button id="show-reg-tab" type="button" aria-pressed="false" class="btn-secondary" style="flex:1;">Register</button>
   </div>
 
   <!-- LOGIN FORM -->
   <div id="login-form-panel">
-    <div class="field"><label>Username</label><input type="text" id="login-username" placeholder="atharva123" autocomplete="username"></div>
-    <div class="field"><label>Password</label><input type="password" id="login-password" placeholder="••••••" onkeydown="if(event.key==='Enter') login()"></div>
+    <div class="field"><label for="login-username">Username</label><input type="text" id="login-username" placeholder="atharva123" autocomplete="username"></div>
+    <div class="field"><label for="login-password">Password</label><input type="password" id="login-password" placeholder="••••••" onkeydown="if(event.key==='Enter') login()"></div>
     <button class="btn btn-primary btn-full" onclick="login()">→ Login</button>
-    <div id="login-msg" class="msg"></div>
+    <div id="login-msg" class="msg" role="status" aria-live="polite"></div>
   </div>
 
   <!-- REGISTRATION FORM (initially hidden) -->
   <div id="reg-form-panel" style="display: none;">
-    <div class="field"><label>Full Name</label><input type="text" id="reg-name" placeholder="Atharva Kulkarni"></div>
-    <div class="field"><label>Email</label><input type="email" id="reg-email" placeholder="user@example.com"></div>
-    <div class="field"><label>Username</label><input type="text" id="reg-username" placeholder="unique_handle"></div>
-    <div class="field"><label>Password</label><input type="password" id="reg-password" placeholder="create strong password"></div>
+    <div class="field"><label for="reg-name">Full Name</label><input type="text" id="reg-name" placeholder="Atharva Kulkarni"></div>
+    <div class="field"><label for="reg-email">Email</label><input type="email" id="reg-email" placeholder="user@example.com"></div>
+    <div class="field"><label for="reg-username">Username</label><input type="text" id="reg-username" placeholder="unique_handle"></div>
+    <div class="field"><label for="reg-password">Password</label><input type="password" id="reg-password" placeholder="create strong password"></div>
     <button class="btn btn-primary btn-full" onclick="registerUser()">✨ Register</button>
-    <div id="reg-msg" class="msg"></div>
+    <div id="reg-msg" class="msg" role="status" aria-live="polite"></div>
   </div>
 </div>
 
@@ -386,10 +406,10 @@
         <div style="font-size:0.7rem; margin-top:6px;">JPG/PNG up to 2MB</div>
       </div>
     </div>
-    <div class="field"><label>Display Name</label><input type="text" id="profile-name" placeholder="Your full name"></div>
-    <div class="field"><label>Bio</label><textarea id="profile-bio" rows="2" placeholder="Short bio..."></textarea></div>
+    <div class="field"><label for="profile-name">Display Name</label><input type="text" id="profile-name" placeholder="Your full name"></div>
+    <div class="field"><label for="profile-bio">Bio</label><textarea id="profile-bio" rows="2" placeholder="Short bio..."></textarea></div>
     <button class="btn btn-primary" onclick="updateFullProfile()">💾 Save Profile</button>
-    <div id="profile-msg" class="msg"></div>
+    <div id="profile-msg" class="msg" role="status" aria-live="polite"></div>
     <div style="margin-top: 16px;"><button class="btn btn-secondary" onclick="logout()">🚪 Logout</button></div>
   </div>
 
@@ -397,16 +417,16 @@
   <div class="card">
     <div class="section-title">✨ NEW TRANSMISSION</div>
     <div class="field">
-      <label>📝 Post content</label>
+      <label for="post-text">📝 Post content</label>
       <textarea id="post-text" class="post-textarea" rows="5" placeholder="What's on your mind? Share your thoughts, moments, or neural insights..."></textarea>
     </div>
     <div class="field">
-      <label>🖼️ Image URL (optional)</label>
+      <label for="post-image-url">🖼️ Image URL (optional)</label>
       <input type="text" id="post-image-url" class="image-input" placeholder="https://... or leave empty">
       <div class="field-hint">Add an image link to make your post stand out</div>
     </div>
     <button class="btn btn-primary" onclick="createPost()">🚀 Upload Post</button>
-    <div id="post-msg" class="msg"></div>
+    <div id="post-msg" class="msg" role="status" aria-live="polite"></div>
   </div>
 
   <!-- Feed Card -->
@@ -481,7 +501,11 @@
   function readUsers() {
     try {
       const value = JSON.parse(localStorage.getItem(USER_STORAGE_KEY) || '[]');
-      return Array.isArray(value) ? value.filter((user) => user && typeof user === 'object') : [];
+      return Array.isArray(value) ? value.filter((user) =>
+        user && typeof user === 'object' && !Array.isArray(user) &&
+        validUsername(user.username) && typeof user.email === 'string' &&
+        typeof user.fullName === 'string' && user.fullName.length <= MAX_NAME_LENGTH
+      ).slice(0, 100) : [];
     } catch {
       return [];
     }
@@ -522,6 +546,7 @@
   }
 
   function saveUsers(users) {
+    if (!Array.isArray(users) || users.length > 100) throw new Error('Local account capacity exceeded');
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(users));
   }
 
@@ -580,23 +605,25 @@
     const feedContainer = document.getElementById('feed-list');
     if(!feedContainer) return;
     if(posts.length === 0) {
-      feedContainer.innerHTML = `<div class="empty-state">📭 No posts yet. Be the first to transmit!</div>`;
+      feedContainer.innerHTML = `<div class="empty-state">📭 No posts yet. Your browser-only feed starts here.</div>`;
       return;
     }
     let html = '';
     for(let p of posts) {
+      if (!p || typeof p !== 'object' || typeof p.text !== 'string' || typeof p.authorUsername !== 'string') continue;
       const isLiked = currentUser && p.likedByUsernames && p.likedByUsernames.includes(currentUser.username);
       const likeClass = isLiked ? 'liked' : '';
-      const likeCount = p.likes || 0;
+      const likeCount = Number.isSafeInteger(p.likes) && p.likes >= 0 ? p.likes : 0;
       const avatarLetter = p.authorName ? p.authorName.charAt(0).toUpperCase() : p.authorUsername.charAt(0).toUpperCase();
       const safeUrl = safeImageUrl(p.imageUrl);
-      const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="Post image" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : '';
-      const timeStr = new Date(p.timestamp).toLocaleString();
+      const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="External post image" loading="lazy" referrerpolicy="no-referrer">` : '';
+      const parsedTime = new Date(p.timestamp);
+      const timeStr = Number.isNaN(parsedTime.getTime()) ? 'Unknown time' : parsedTime.toLocaleString();
       html += `
         <div class="post-card" data-postid="${p.id}">
           <div class="post-header">
             <div class="avatar" style="background: linear-gradient(145deg, #ec4899, #8b5cf6);">${escapeHtml(avatarLetter)}</div>
-            <div class="post-meta"><span class="post-author">${escapeHtml(p.authorName || p.authorUsername)}</span> <span class="post-time">${timeStr}</span></div>
+            <div class="post-meta"><span class="post-author">${escapeHtml(p.authorName || p.authorUsername)}</span> <span class="post-time">${escapeHtml(timeStr)}</span></div>
           </div>
           <div class="post-body">${escapeHtml(p.text)}</div>
           ${imageHtml}
@@ -611,7 +638,7 @@
 
   window.toggleLikePost = function(postId) {
     if(!currentUser) return;
-    const post = posts.find(p => p.id == postId);
+    const post = posts.find(p => p.id === postId);
     if(!post) return;
     const idx = post.likedByUsernames.indexOf(currentUser.username);
     if(idx === -1) {
@@ -634,7 +661,7 @@
     const safeUrl = safeImageUrl(imageUrl);
     if(imageUrl && !safeUrl) { showMessage('post-msg', 'Use a valid HTTPS image URL.', 'error'); return; }
     const newPost = {
-      id: Date.now().toString() + Math.random(),
+      id: 'local-' + (window.crypto?.randomUUID?.() || (Date.now().toString(36) + '-' + Math.random().toString(36).slice(2))),
       authorName: currentUser.fullName || currentUser.username,
       authorUsername: currentUser.username,
       text: text,
@@ -644,6 +671,7 @@
       timestamp: new Date().toISOString()
     };
     posts.unshift(newPost);
+    if (posts.length > 250) posts.length = 250; // Limit browser-only memory usage.
     document.getElementById('post-text').value = '';
     document.getElementById('post-image-url').value = '';
     renderFeed();
@@ -731,11 +759,15 @@
       showMessage('reg-msg', 'Use a password between 12 and 128 characters.', 'error'); return;
     }
     let users = readUsers();
-    if(users.find(u => u.email === email)) {
+    if(users.length >= 100) {
+      showMessage('reg-msg', 'This browser demo supports up to 100 local accounts.', 'error');
+      return;
+    }
+    if(users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
       showMessage('reg-msg', '❌ Duplicate email! Already registered.', 'error');
       return;
     }
-    if(users.find(u => u.username === username)) {
+    if(users.find(u => u.username.toLowerCase() === username.toLowerCase())) {
       showMessage('reg-msg', '❌ Username taken. Choose another.', 'error');
       return;
     }
@@ -758,8 +790,12 @@
     const password = document.getElementById('login-password').value;
     if(!username || !password) { showMessage('login-msg', 'Enter credentials', 'error'); return; }
     const storedUsers = readUsers();
-    let user = storedUsers.find((entry) => entry.username === username);
-    if(!user) { showMessage('login-msg', 'Invalid credentials.', 'error'); return; }
+    let user = storedUsers.find((entry) => entry.username.toLowerCase() === username.toLowerCase());
+    if(!user) {
+      // Avoid embedding an arbitrary user lookup result into the rendered page.
+      showMessage('login-msg', 'Invalid credentials.', 'error');
+      return;
+    }
     try {
       let matches = false;
       if(user.passwordSalt && user.passwordHash) {
@@ -783,8 +819,10 @@
     }
     currentUser = { username: user.username, fullName: user.fullName, email: user.email, bio: user.bio || '', avatarDataURL: user.avatarDataURL || null };
     loggedIn = true;
+    document.getElementById('login-password').value = '';
     showMessage('login-msg', 'Welcome back!', 'success');
     setTimeout(() => {
+      if (!loggedIn || currentUser?.username !== user.username) return;
       document.getElementById('login-card').style.display = 'none';
       document.getElementById('app-section').classList.add('visible');
       document.getElementById('feed-section').classList.add('visible');
@@ -803,6 +841,9 @@
     document.getElementById('login-card').style.display = 'block';
     document.getElementById('login-username').value = '';
     document.getElementById('login-password').value = '';
+    document.getElementById('reg-password').value = '';
+    document.getElementById('post-text').value = '';
+    document.getElementById('post-image-url').value = '';
     document.getElementById('login-msg').className = 'msg';
     document.getElementById('profile-msg').className = 'msg';
     document.getElementById('post-msg').className = 'msg';
@@ -813,6 +854,8 @@
   document.getElementById('show-login-tab').addEventListener('click', () => {
     document.getElementById('login-form-panel').style.display = 'block';
     document.getElementById('reg-form-panel').style.display = 'none';
+    document.getElementById('show-login-tab').setAttribute('aria-pressed', 'true');
+    document.getElementById('show-reg-tab').setAttribute('aria-pressed', 'false');
     document.getElementById('show-login-tab').style.background = 'var(--primary)';
     document.getElementById('show-reg-tab').style.background = '';
     document.getElementById('show-reg-tab').style.color = '';
@@ -820,6 +863,8 @@
   document.getElementById('show-reg-tab').addEventListener('click', () => {
     document.getElementById('login-form-panel').style.display = 'none';
     document.getElementById('reg-form-panel').style.display = 'block';
+    document.getElementById('show-login-tab').setAttribute('aria-pressed', 'false');
+    document.getElementById('show-reg-tab').setAttribute('aria-pressed', 'true');
     document.getElementById('show-reg-tab').style.background = 'var(--primary)';
     document.getElementById('show-login-tab').style.background = '';
     document.getElementById('show-login-tab').style.color = '';

@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0075",
+  "synthetic": true,
+  "kind": "image_url",
+  "description": "Accept valid HTTPS media URI scenario 75",
+  "input": "https://cdn.example.test/p/75.png?size=175",
+  "expected": "https://cdn.example.test/p/75.png?size=175"
+}

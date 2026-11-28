@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0162",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 162",
+  "input": "<script>alert(\"162\")</script>",
+  "expected": "&lt;script&gt;alert(&quot;162&quot;)&lt;/script&gt;"
+}
