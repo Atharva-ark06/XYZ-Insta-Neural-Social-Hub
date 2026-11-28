@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0144",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled HTML and attributes 144",
+  "input": "line one 144\nline two",
+  "expected": "line one 144<br>line two"
+}
