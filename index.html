@@ -780,7 +780,11 @@
     if(!username || !password) { showMessage('login-msg', 'Enter credentials', 'error'); return; }
     const storedUsers = readUsers();
     let user = storedUsers.find((entry) => entry.username === username);
-    if(!user) { showMessage('login-msg', 'Invalid credentials.', 'error'); return; }
+    if(!user) {
+      // Avoid embedding an arbitrary user lookup result into the rendered page.
+      showMessage('login-msg', 'Invalid credentials.', 'error');
+      return;
+    }
     try {
       let matches = false;
       if(user.passwordSalt && user.passwordHash) {
