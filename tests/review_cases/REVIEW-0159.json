@@ -1,0 +1,8 @@
+{
+  "case_id": "REVIEW-0159",
+  "synthetic": true,
+  "kind": "escape_html",
+  "description": "Escape user-controlled markup and attribute characters 159",
+  "input": "' & < > \" 159",
+  "expected": "&#39; &amp; &lt; &gt; &quot; 159"
+}
