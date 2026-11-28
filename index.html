@@ -813,6 +813,8 @@
   document.getElementById('show-login-tab').addEventListener('click', () => {
     document.getElementById('login-form-panel').style.display = 'block';
     document.getElementById('reg-form-panel').style.display = 'none';
+    document.getElementById('show-login-tab').setAttribute('aria-pressed', 'true');
+    document.getElementById('show-reg-tab').setAttribute('aria-pressed', 'false');
     document.getElementById('show-login-tab').style.background = 'var(--primary)';
     document.getElementById('show-reg-tab').style.background = '';
     document.getElementById('show-reg-tab').style.color = '';
@@ -820,6 +822,8 @@
   document.getElementById('show-reg-tab').addEventListener('click', () => {
     document.getElementById('login-form-panel').style.display = 'none';
     document.getElementById('reg-form-panel').style.display = 'block';
+    document.getElementById('show-login-tab').setAttribute('aria-pressed', 'false');
+    document.getElementById('show-reg-tab').setAttribute('aria-pressed', 'true');
     document.getElementById('show-reg-tab').style.background = 'var(--primary)';
     document.getElementById('show-login-tab').style.background = '';
     document.getElementById('show-login-tab').style.color = '';
