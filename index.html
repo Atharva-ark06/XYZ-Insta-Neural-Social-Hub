@@ -587,16 +587,17 @@
     for(let p of posts) {
       const isLiked = currentUser && p.likedByUsernames && p.likedByUsernames.includes(currentUser.username);
       const likeClass = isLiked ? 'liked' : '';
-      const likeCount = p.likes || 0;
+      const likeCount = Number.isSafeInteger(p.likes) && p.likes >= 0 ? p.likes : 0;
       const avatarLetter = p.authorName ? p.authorName.charAt(0).toUpperCase() : p.authorUsername.charAt(0).toUpperCase();
       const safeUrl = safeImageUrl(p.imageUrl);
       const imageHtml = safeUrl ? `<img src="${escapeHtml(safeUrl)}" class="post-image" alt="Post image" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">` : '';
-      const timeStr = new Date(p.timestamp).toLocaleString();
+      const parsedTime = new Date(p.timestamp);
+      const timeStr = Number.isNaN(parsedTime.getTime()) ? 'Unknown time' : parsedTime.toLocaleString();
       html += `
         <div class="post-card" data-postid="${p.id}">
           <div class="post-header">
             <div class="avatar" style="background: linear-gradient(145deg, #ec4899, #8b5cf6);">${escapeHtml(avatarLetter)}</div>
-            <div class="post-meta"><span class="post-author">${escapeHtml(p.authorName || p.authorUsername)}</span> <span class="post-time">${timeStr}</span></div>
+            <div class="post-meta"><span class="post-author">${escapeHtml(p.authorName || p.authorUsername)}</span> <span class="post-time">${escapeHtml(timeStr)}</span></div>
           </div>
           <div class="post-body">${escapeHtml(p.text)}</div>
           ${imageHtml}
