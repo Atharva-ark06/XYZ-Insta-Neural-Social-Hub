@@ -333,6 +333,26 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
       #neuro-canvas { opacity: .12; }
     }
+
+    /* Keyboard visibility and responsive social-dashboard clarity. */
+    .card h2, .section-title { font-weight: 800; }
+    .card, .post-card { overflow-wrap: anywhere; }
+    .post-card { position: relative; }
+    .post-card:focus-within { border-color: #a78bfa; box-shadow: 0 0 0 2px rgba(167,139,250,.35); }
+    .post-body { font-weight: 600; line-height: 1.75; }
+    .post-header .post-author { letter-spacing: .01em; }
+    .theme-toggle { color: var(--text-main); transition: border-color .18s ease, transform .18s ease; }
+    .theme-toggle:hover { border-color: #a78bfa; transform: translateY(-1px); }
+    .theme-toggle[aria-pressed="true"] { outline: 2px solid #8b5cf6; outline-offset: 3px; }
+    .btn-secondary[aria-pressed="true"] { border-color: #a78bfa; font-weight: 800; }
+    .msg[role="status"] { font-weight: 700; line-height: 1.55; }
+    .post-time, .field-hint { line-height: 1.5; }
+    @media (max-width: 420px) {
+      header h1 { font-size: 1.15rem; overflow-wrap: anywhere; }
+      .card { padding: 18px; }
+      .post-actions { flex-wrap: wrap; gap: 8px; }
+      .theme-toggle { width: 44px; height: 44px; }
+    }
   </style>
 </head>
 <body>
