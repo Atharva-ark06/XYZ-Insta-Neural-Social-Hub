@@ -1,0 +1,7 @@
+{
+  "case_id": "REVIEW-0196",
+  "synthetic": true,
+  "kind": "synthetic_feed",
+  "description": "Verify labeled fictional post content and count 196",
+  "input": ""
+}
