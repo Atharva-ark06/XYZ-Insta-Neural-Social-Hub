@@ -611,7 +611,7 @@
 
   window.toggleLikePost = function(postId) {
     if(!currentUser) return;
-    const post = posts.find(p => p.id == postId);
+    const post = posts.find(p => p.id === postId);
     if(!post) return;
     const idx = post.likedByUsernames.indexOf(currentUser.username);
     if(idx === -1) {
@@ -783,8 +783,10 @@
     }
     currentUser = { username: user.username, fullName: user.fullName, email: user.email, bio: user.bio || '', avatarDataURL: user.avatarDataURL || null };
     loggedIn = true;
+    document.getElementById('login-password').value = '';
     showMessage('login-msg', 'Welcome back!', 'success');
     setTimeout(() => {
+      if (!loggedIn || currentUser?.username !== user.username) return;
       document.getElementById('login-card').style.display = 'none';
       document.getElementById('app-section').classList.add('visible');
       document.getElementById('feed-section').classList.add('visible');
@@ -803,6 +805,9 @@
     document.getElementById('login-card').style.display = 'block';
     document.getElementById('login-username').value = '';
     document.getElementById('login-password').value = '';
+    document.getElementById('reg-password').value = '';
+    document.getElementById('post-text').value = '';
+    document.getElementById('post-image-url').value = '';
     document.getElementById('login-msg').className = 'msg';
     document.getElementById('profile-msg').className = 'msg';
     document.getElementById('post-msg').className = 'msg';
