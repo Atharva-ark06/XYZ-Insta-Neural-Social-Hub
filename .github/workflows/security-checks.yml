@@ -18,10 +18,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
       - name: Install locked dependencies without lifecycle scripts
         run: npm ci --ignore-scripts
       - name: Run security regression tests
         run: npm test
       - name: Audit high-severity dependency advisories
         run: npm audit --audit-level=high
+      - name: Check static HTML entrypoint
+        run: test -s index.html
+      - name: Verify lockfile remains dependency-free
+        run: node -e "const p=require('./package-lock.json'); if(Object.keys(p.packages).length!==1) process.exit(1)"
